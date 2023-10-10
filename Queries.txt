@@ -1,0 +1,37 @@
+/* Query 1*/
+SELECT a.title, g.name, COUNT (*) number_of_albums
+FROM album a
+JOIN track t
+ON a.albumid = t.albumid
+JOIN genre g
+ON t.genreid = g.genreid
+GROUP BY a.title, g.name
+ORDER BY number_of_albums DESC
+LIMIT 5;
+
+/* Query 2*/
+SELECT g.name AS genre, COUNT(t.trackid) AS track_count
+FROM genre g
+JOIN track t 
+ON g.genreid = t.genreid
+GROUP BY g.name
+ORDER BY track_count DESC
+LIMIT 5;
+
+/* Query 3*/
+SELECT c.firstname, c.lastname, SUM(total) Invoice_Total
+FROM invoice i
+JOIN customer c
+ON c.customerid = i.customerid
+GROUP BY c.firstname, c.lastname
+ORDER BY invoice_total DESC
+LIMIT 15;
+
+
+/* Query 4*/
+SELECT e.lastname, e.firstname, COUNT(c.customerid) customers 
+FROM employee e
+JOIN customer c
+ON e.employeeid = c.supportrepid
+GROUP BY e.lastname, e.firstname
+ORDER BY customers DESC;
